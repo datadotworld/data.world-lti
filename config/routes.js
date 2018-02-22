@@ -1,5 +1,12 @@
 module.exports = (app) => {
 
+    app.route('/health')
+        .get((req, res) => {
+
+            res.sendStatus(200);
+
+        });
+
     app.route('/register')
         .get((req, res) => {
 
@@ -8,8 +15,7 @@ module.exports = (app) => {
         })
         .post((req, res) => {
 
-           console.log(req);
-            res.json(req);
+            res.json(req.body);
 
         });
 
