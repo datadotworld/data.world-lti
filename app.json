@@ -1,0 +1,7 @@
+{
+  "name": "data.world LTI Connector",
+  "description": "A Node application for connecting to data.world through an LTI compliant LMS.",
+  "repository": "https://github.com/datadotworld/data.world-lti",
+  "keywords": ["node", "express", "heroku", "lms", "LTI"],
+  "image": "heroku/nodejs"
+}
