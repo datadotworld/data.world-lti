@@ -15,7 +15,12 @@ module.exports = (app) => {
         })
         .post((req, res) => {
 
-            res.json(req.body);
+            res.json({
+
+                body: req.body,
+                headers: req.headers
+
+            });
 
         });
 
