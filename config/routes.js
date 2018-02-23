@@ -5,7 +5,7 @@ module.exports = (app) => {
     app.route('/')
         .get((req, res) => {
 
-            res.redirect('data.world');
+            res.redirect('https://data.world');
 
         })
         .post((req, res) => {
