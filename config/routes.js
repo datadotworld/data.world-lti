@@ -2,13 +2,20 @@ const lti = require('ims-lti');
 
 module.exports = (app) => {
 
+    app.route('/')
+        .post((req, res) => {
+
+            res.render('index', { title: 'Hey', message: 'Hello there!' });
+
+        });
+
     app.route('/config')
         .post((req, res, next) => {
 
 
             let options = {
 
-                root: '/public/',
+                root: 'public/',
                 dotfiles: 'deny',
                 headers: {
 
