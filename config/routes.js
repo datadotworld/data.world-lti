@@ -15,7 +15,18 @@ module.exports = (app) => {
         })
         .post((req, res) => {
 
-            res.json(req);
+            let response = {
+
+                headers: req.headers,
+                body: req.body,
+                params: req.params,
+                query: req.query,
+                cookies: req.cookies,
+                signedCookies: req.signedCookies
+
+            };
+
+            res.json(response);
 
         });
 
