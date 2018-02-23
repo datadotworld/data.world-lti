@@ -24,49 +24,49 @@ module.exports = (app, express) => {
 
         fs.readFile(filePath, function (err, content) {
 
-            if (err) return callback(err)
+            if (err) return callback(err);
 
-            // this is an extremely simple template engine
-            let rendered = content.toString().replace('#message#', (json) => {
+            let json = options.data;
 
-                if (typeof json !== 'string') {
+            if (typeof json !== 'string') {
 
-                    json = JSON.stringify(json, undefined, 2);
+                json = JSON.stringify(json, undefined, 2);
 
-                }
+            }
 
-                json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-                return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) => {
+            json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, (match) => {
 
-                    let cls = 'number';
+                let cls = 'number';
 
-                    if (/^"/.test(match)) {
+                if (/^"/.test(match)) {
 
-                        if (/:$/.test(match)) {
+                    if (/:$/.test(match)) {
 
-                            cls = 'key';
+                        cls = 'key';
 
-                        } else {
+                    } else {
 
-                            cls = 'string';
+                        cls = 'string';
 
-                        }
-
-                    } else if (/true|false/.test(match)) {
-
-                        cls = 'boolean';
-
-                    } else if (/null/.test(match)) {
-
-                        cls = 'null';
                     }
 
-                    return '<span class="' + cls + '">' + match + '</span>';
+                } else if (/true|false/.test(match)) {
 
-                });
+                    cls = 'boolean';
+
+                } else if (/null/.test(match)) {
+
+                    cls = 'null';
+                }
+
+                return '<span class="' + cls + '">' + match + '</span>';
 
             });
+
+            // this is an extremely simple template engine
+            let rendered = content.toString().replace('#data#', json);
 
             return callback(null, rendered)
         })
