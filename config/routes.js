@@ -5,7 +5,7 @@ module.exports = (app) => {
     app.route('/')
         .post((req, res) => {
 
-            res.render('index', { title: 'Hey', message: 'Hello there!' });
+            res.render('index', { message: req.body});
 
         });
 
