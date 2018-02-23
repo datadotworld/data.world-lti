@@ -1,4 +1,39 @@
+const lti = require('ims-lti');
+
 module.exports = (app) => {
+
+    app.route('/config')
+        .post((req, res, next) => {
+
+
+            let options = {
+
+                root: '/public/',
+                dotfiles: 'deny',
+                headers: {
+
+                    'x-timestamp': Date.now(),
+                    'x-sent': true
+
+                }
+
+            };
+
+            res.sendFile('config.xml', options, (error) => {
+
+                if (error) {
+
+                    next(error);
+
+                } else {
+
+                    console.log('Sent:', 'config.xml');
+
+                }
+
+            })
+
+        });
 
     app.route('/health')
         .get((req, res) => {
@@ -15,18 +50,18 @@ module.exports = (app) => {
         })
         .post((req, res) => {
 
-            let response = {
+            let body = req.body;
 
-                headers: req.headers,
-                body: req.body,
-                params: req.params,
-                query: req.query,
-                cookies: req.cookies,
-                signedCookies: req.signedCookies
+            let provider = new lti.Provider(
 
-            };
+                body['reg_key'],
+                body['reg_pass']
 
-            res.json(response);
+            );
+
+
+
+            res.json(provider);
 
         });
 
