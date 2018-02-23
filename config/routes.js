@@ -3,6 +3,11 @@ const lti = require('ims-lti');
 module.exports = (app) => {
 
     app.route('/')
+        .get((req, res) => {
+
+            res.redirect('data.world');
+
+        })
         .post((req, res) => {
 
             res.render('index', { data: req.body});
