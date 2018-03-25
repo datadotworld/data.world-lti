@@ -7,7 +7,7 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 const faker = require('faker');
-const redis = require('../../../src/config/redis');
+const redis = require('../../../server/config/redis');
 const lti = require('ims-lti');
 const RedisStore = require('ims-lti').Stores.RedisStore;
 

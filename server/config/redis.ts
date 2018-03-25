@@ -18,6 +18,12 @@ if (process.env.REDIS_URL) {
 
 }
 
-const client = redis.createClient(options);
+let client = {};
+
+if (process.env.NODE_ENV  !== 'test') {
+
+    client = redis.createClient(options);
+
+}
 
 module.exports = client;

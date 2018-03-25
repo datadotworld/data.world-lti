@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 
 const faker = require('faker');
 
-const app = require('../../../src/index');
+const app = require('../../../server/index');
 
 describe('HTTP Tests for lms/routes "/lti/config"', () => {
 

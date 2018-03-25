@@ -7,9 +7,9 @@ const asPromised = require('chai-as-promised');
 chai.use(asPromised);
 
 const faker = require('faker');
-const provider = require('../../../src/lms/provider');
+const provider = require('../../../server/lms/provider');
 
-const Registration = require('../../../src/database').sequelize.models.Registration;
+const Registration = require('../../../es5/src/database/index').sequelize.models.Registration;
 
 describe('Unit Tests for the lms/provider module', () => {
 

@@ -5,7 +5,7 @@ const should = chai.should();
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const redis = require('../../../src/config/redis');
+const redis = require('../../../server/config/redis');
 
 describe('Tests for a valid redis connection', () => {
 

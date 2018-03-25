@@ -1,5 +1,5 @@
 const secrets = require('./secrets');
-const Registration = require('../database').sequelize.models.Registration;
+const Registration = require('../../es5/src/database/index').sequelize.models.Registration;
 
 module.exports.register = (name, email, organization, title) => {
 

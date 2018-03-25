@@ -1,9 +1,5 @@
 const path = require('path');
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
 
     module: {
@@ -12,7 +8,7 @@ module.exports = {
 
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules|bower_components|es5)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -25,28 +21,13 @@ module.exports = {
 
     },
     entry: {
-        index: './src/client/index.js'
+        unit: './test/unit/index.js'
     },
     devtool: 'inline-source-map',
-    plugins: [
-
-        new CleanWebpackPlugin(['src/client/public']),
-        new CopyWebpackPlugin([
-
-            {from: './src/client/assets/ddw.app.css', to: 'ddw.app.css'},
-            {from: './src/client/assets/ddw.vendor.css', to: 'ddw.vendor.css'}
-
-        ], {flatten: true}),
-        new HtmlWebpackPlugin({
-
-            template: './src/client/index.html'
-
-        })
-    ],
     output: {
 
-        filename: 'app.bundle.js',
-        path: path.resolve(__dirname, 'src/client/public'),
+        filename: '[name].js',
+        path: path.resolve(__dirname, './dist/test'),
 
     },
 

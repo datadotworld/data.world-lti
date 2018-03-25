@@ -8,7 +8,7 @@ chai.use(asPromised);
 
 const faker = require('faker');
 
-const controllers = require('../../../src/lms/controllers');
+const controllers = require('../../../server/lms/controllers');
 
 describe('Unit Tests for the lms/controllers module', () => {
 

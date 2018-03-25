@@ -1,6 +1,6 @@
 const chai = require('chai');
 
-const secrets = require('../../../src/lms/secrets');
+const secrets = require('../../../server/lms/secrets');
 
 describe('Unit Tests for the lms/secrets module', () => {
 

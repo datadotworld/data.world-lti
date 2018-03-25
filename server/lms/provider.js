@@ -1,7 +1,7 @@
 const lti = require('ims-lti');
-const store = require('ims-lti').Stores.RedisStore;
+const stores = require('ims-lti').Stores;
 const client = require('../config/redis');
-const Registration = require('../database').sequelize.models.Registration;
+const Registration = require('../../es5/src/database/index').sequelize.models.Registration;
 
 module.exports = {
 
@@ -21,7 +21,17 @@ module.exports = {
     },
     initialize: (key, secret) => {
 
-        const nonceStore = new store(key, client);
+        let nonceStore;
+
+        if (process.env.NODE_ENV  !== 'test') {
+
+            nonceStore = new stores.RedisStore(key, client);
+
+        } else {
+
+            nonceStore = new stores.MemoryStore();
+
+        }
 
         return new lti.Provider(key, secret, nonceStore);
 

@@ -5,7 +5,7 @@ const should = require('chai').should();
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const app = require('../../../src/index');
+const app = require('../../../server/index');
 
 describe('HTTP Tests for client/routes "/"', () => {
 
