@@ -1,35 +1,34 @@
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
 
+    entry: {
+
+        server: './src/server/index.ts'
+
+    },
+    target: 'node',
+    externals: [nodeExternals()],
+    devtool: 'inline-source-map',
     module: {
 
         rules: [
 
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components|es5)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['babel-preset-env']
-                    }
-                }
-            }
+            { test: /\.tsx?$/, loader: 'awesome-typescript-loader', exclude: /node_modules/ }
 
         ]
 
     },
-    entry: {
-        unit: './test/unit/index.js'
+    resolve: {
+        extensions: [ '.tsx', '.jsx', '.ts', '.js' ]
     },
-    devtool: 'inline-source-map',
     output: {
 
-        filename: '[name].js',
-        path: path.resolve(__dirname, './dist/test'),
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, './dist/'),
 
     },
-
+    node: { fs: "empty" }
 
 };

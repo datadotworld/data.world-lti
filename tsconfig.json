@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "jsx": "react",
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "outDir": "./dist",
+    "outDir": "./dist/",
     "sourceMap": true,
-    "target": "es5"
-  },
-  "exclude": [
-    "es5/",
-    "webpack.config.js"
-  ]
+    "target": "es5",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*", "test/*", "src/*"]
+    }
+  }
 }
