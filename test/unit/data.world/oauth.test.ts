@@ -10,7 +10,7 @@ const axios = require('axios');
 
 import MockAdapter from 'axios-mock-adapter'
 
-const OAuth = require('src/server/data.world/oauth');
+const OAuth = require('../../../src/server/data.world/oauth');
 
 describe('Unit Test(s) - data.world/OAuth Class', () => {
 

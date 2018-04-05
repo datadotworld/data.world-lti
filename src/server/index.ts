@@ -42,8 +42,8 @@ class Bootstrapper {
 
         if (!module.parent) {
 
+
             this.application.listen(this.port);
-            console.log('here!');
 
         }
 

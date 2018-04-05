@@ -1,5 +1,6 @@
-import * as express from 'express';
 import * as bodyParser from 'body-parser';
+import * as express from 'express';
+import * as url from 'url';
 
 /**
  * A wrapper class for managing an express.Application instance.
@@ -21,8 +22,11 @@ export default class App {
     constructor() {
 
         this.express = express();
-        // this.express.set('view engine', 'pug');
-        // this.express.set('views', ['../client/views', './lms/views']);
+
+        this.express.set('views', "./views");
+        this.express.set('view engine', 'mustache');
+
+        this.express.use(express.static('./public'));
         this.middleware();
         this.routes();
 
@@ -47,11 +51,53 @@ export default class App {
      */
     private routes(): void {
 
-        let router = express.Router();
+        const router = express.Router();
+
+        require('./views/index.mustache');
+        require('./views/config.mustache');
+
 
         router.get('/', (request, response) => {
 
-          response.send('Hello World!');
+            response.render('index', {title: 'data.world LTI'});
+
+        });
+
+        router.get('/lti/config', (request, response) => {
+
+            let hostUrl = url.format({
+
+                protocol: request.protocol,
+                host: request.get('host'),
+                pathname: request.originalUrl
+
+            });
+
+            response.set('Content-Type', 'text/xml');
+
+            response.render('config',{
+
+                "launch_url": hostUrl + "/lti/launch",
+                "title": "data.world",
+                "description": "Provides users access to their data.world resources.",
+                "extensions": [
+                    {
+                        "platform": "canvas.instructure.com",
+                        "tool_id": "course_navigation",
+                        "privacy_level": "public",
+                        "course_navigation": {
+                            "host_url": hostUrl,
+                            "default": "enabled",
+                            "visibility": "members",
+                            "enabled": "true",
+                            "text": "data.world"
+
+
+                        }
+                    }
+                ]
+
+            });
 
         });
 

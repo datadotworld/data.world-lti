@@ -12,7 +12,7 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "*": ["*", "test/*", "src/*"]
+      "*": [ "*", "dist/public/*"]
     }
   }
 }

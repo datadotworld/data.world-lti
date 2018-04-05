@@ -10,7 +10,6 @@ services:
       WEBPACK_MODE: development
     ports:
       - 8080:4000
-
   redis:
     container_name: ddw-lti-redis
     image: redis:latest

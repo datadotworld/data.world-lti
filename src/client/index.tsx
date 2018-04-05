@@ -1,9 +1,14 @@
+import 'bootstrap';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Hello } from "./components/Hello";
+import { Navbar } from "./components/Navbar";
+
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
-    document.getElementById("example")
+
+    <Navbar/>,
+
+    document.getElementById("root")
+
 );

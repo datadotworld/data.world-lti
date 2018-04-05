@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {Configurable} from 'src/server/config/configurable';
+import {Configurable} from '../../../src/server/config/configurable';
 
 describe('Unit Test(s) - config/Configurable Class', () => {
 
