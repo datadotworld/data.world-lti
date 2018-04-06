@@ -35,7 +35,7 @@ class Bootstrapper {
      */
     constructor() {
 
-        this.port = this.normalizePort(process.env.NODE_PORT || 3000);
+        this.port = this.normalizePort(process.env.PORT || 3000);
 
         this.application = new App().express;
         this.application.set('port', this.port);
