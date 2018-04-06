@@ -61,13 +61,7 @@ export default class App {
 
         router.get('/', (request, response) => {
 
-            response.render('index', {title: 'data.world LTI'});
-
-        });
-
-        router.get('/widget', (request, response) => {
-
-            response.render('widget', {title: 'data.world LTI', client: config['client_id']});
+            response.render('index', {title: 'data.world LTI', client: config['client_id']});
 
         });
 
