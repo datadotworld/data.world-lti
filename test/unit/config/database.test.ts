@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-import DatabaseConfig from '../../../src/server/config/database';
+import DatabaseConfig from '../../../src/config/database';
 
 describe('Unit Test(s) - config/DatabaseConfig Class', () => {
 

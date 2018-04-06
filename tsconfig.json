@@ -7,12 +7,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "outDir": "./dist/",
     "sourceMap": true,
-    "target": "es5",
-    "baseUrl": ".",
-    "paths": {
-      "*": [ "*", "dist/public/*"]
-    }
+    "target": "es5"
   }
 }

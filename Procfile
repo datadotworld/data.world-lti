@@ -1,1 +1,1 @@
-web: node dist/server.bundle.js
+web: npm run start

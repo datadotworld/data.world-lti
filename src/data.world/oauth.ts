@@ -1,5 +1,8 @@
 const config = require('../config/data.world');
-const http = require('axios');
+import axios, { AxiosResponse, AxiosError } from 'axios';
+import * as express from 'express';
+
+//oauth/ddw/access_token/callback
 
 /**
  * @class OAuth
@@ -114,13 +117,55 @@ export default class OAuth {
      * Makes an HTTP request for an Access Token and returns the result.
      *
      * @param {String} code
+     * @param {express.Response} response
      * @param {String|null} redirectUri
      *
      * @return {Promise}
      */
-    requestAccessToken(code: string, redirectUri: string=null) {
+    requestAccessToken(code: string, response: express.Response, redirectUri: string=null) {
 
-        return http.post(this.mintRequestAccessTokenUri(code, redirectUri));
+        axios.post(this.mintRequestAccessTokenUri(code, redirectUri)).then((tokenResponse: AxiosResponse) => {
+
+            if (tokenResponse.data.access_token) {
+
+                let tokenUrl = this.appendUriParamsToBaseUri(
+
+                    config['connector_uri'],
+                    {"token": tokenResponse.data.access_token}
+
+                );
+
+                response.redirect(tokenUrl);
+
+            } else {
+
+                let errorMessage = tokenResponse.data.message || 'UNKNOWN_ERROR';
+
+                let errorUrl = this.appendUriParamsToBaseUri(
+
+                    config['connector_uri'],
+                    {"error": errorMessage}
+
+                );
+
+                response.redirect(errorUrl);
+
+            }
+
+        }).catch((error: AxiosError) => {
+
+            let errorMessage = error.message || 'UNKNOWN_ERROR';
+
+            let errorUrl = this.appendUriParamsToBaseUri(
+
+                config['connector_uri'],
+                {"error": errorMessage}
+
+            );
+
+            response.redirect(errorUrl);
+
+        });
 
     }
 

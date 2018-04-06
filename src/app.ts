@@ -1,6 +1,10 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import * as path from 'path';
 import * as url from 'url';
+
+const engine = require('mustache-express');
+import { router as ddwRouter } from './data.world/routes';
 
 /**
  * A wrapper class for managing an express.Application instance.
@@ -23,10 +27,11 @@ export default class App {
 
         this.express = express();
 
-        this.express.set('views', "./views");
+        this.express.engine('mustache', engine());
         this.express.set('view engine', 'mustache');
+        this.express.set('views', path.resolve(__dirname, 'views'));
 
-        this.express.use(express.static('./public'));
+        this.express.use(express.static('public'));
         this.middleware();
         this.routes();
 
@@ -53,10 +58,6 @@ export default class App {
 
         const router = express.Router();
 
-        require('./views/index.mustache');
-        require('./views/config.mustache');
-
-
         router.get('/', (request, response) => {
 
             response.render('index', {title: 'data.world LTI'});
@@ -75,7 +76,7 @@ export default class App {
 
             response.set('Content-Type', 'text/xml');
 
-            response.render('config',{
+            response.render('config', {
 
                 "launch_url": hostUrl + "/lti/launch",
                 "title": "data.world",
@@ -102,6 +103,7 @@ export default class App {
         });
 
         this.express.use('/', router);
+        this.express.use('/oauth/ddw', ddwRouter);
 
     }
 

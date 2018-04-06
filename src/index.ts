@@ -1,6 +1,6 @@
 import * as http from 'http';
 import * as express from 'express';
-import App from '../server/app';
+import App from './app';
 
 /**
  * A class for orchastrating of the HTTP server to be used by the express.Application.

@@ -1,7 +1,9 @@
 .bashrc
 .idea/
+.env
 node_modules/
 postgres/
+public/
 package-lock.json
 yarn.lock
 yarn-error.log

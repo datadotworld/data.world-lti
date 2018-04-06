@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 
-const SecretGenerator = require('../../../src/server/lms/secrets');
+const SecretGenerator = require('../../../src/lms/secrets');
 
 
 describe('Unit Test(s) - lms/SecretGenerator Class', () => {

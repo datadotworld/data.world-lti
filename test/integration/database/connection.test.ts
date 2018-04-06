@@ -1,4 +1,4 @@
-import {sequelize} from '../../../src/server/database';
+import {sequelize} from '../../../src/database';
 
 describe('Integration Test(s) - Database', () => {
 

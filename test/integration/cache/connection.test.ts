@@ -1,6 +1,6 @@
 import {createClient} from 'redis';
 
-import RedisConfig from '../../../src/server/config/redis';
+import RedisConfig from '../../../src/config/redis';
 
 
 describe('Integration Test(s) - Cache', () => {
