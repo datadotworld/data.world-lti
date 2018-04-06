@@ -2,6 +2,7 @@ import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import * as path from 'path';
 import * as url from 'url';
+const config = require('./config/data.world');
 
 const engine = require('mustache-express');
 import { router as ddwRouter } from './data.world/routes';
@@ -61,6 +62,12 @@ export default class App {
         router.get('/', (request, response) => {
 
             response.render('index', {title: 'data.world LTI'});
+
+        });
+
+        router.get('/widget', (request, response) => {
+
+            response.render('widget', {title: 'data.world LTI', client: config['client_id']});
 
         });
 
