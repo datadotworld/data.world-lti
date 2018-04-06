@@ -47,6 +47,9 @@
     "redis": "^2.8.0",
     "sequelize": "^4.35.2",
     "sequelize-typescript": "^0.6.3",
+    "ts-loader": "^4.1.0",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.8.1",
     "umzug": "^2.1.0"
   },
   "devDependencies": {
@@ -82,9 +85,6 @@
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.3",
     "svg-inline-loader": "^0.8.0",
-    "ts-loader": "^4.1.0",
-    "ts-node": "^5.0.1",
-    "typescript": "^2.8.1",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.4.1",
     "webpack-cleanup-plugin": "^0.5.1",
