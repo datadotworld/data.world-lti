@@ -2,7 +2,6 @@ const config = require('../config/data.world');
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import * as express from 'express';
 
-//oauth/ddw/access_token/callback
 
 /**
  * @class OAuth

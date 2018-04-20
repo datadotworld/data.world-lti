@@ -1,11 +1,13 @@
 import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import * as path from 'path';
-import * as url from 'url';
-const config = require('./config/data.world');
 
 const engine = require('mustache-express');
+
+import { router as clientRouter } from './client/routes';
 import { router as ddwRouter } from './data.world/routes';
+import { router as ltiRouter } from './lms/routes';
 
 /**
  * A wrapper class for managing an express.Application instance.
@@ -47,6 +49,7 @@ export default class App {
 
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express.use(cookieParser());
 
     }
 
@@ -57,54 +60,11 @@ export default class App {
      */
     private routes(): void {
 
-        const router = express.Router();
 
-        router.get('/', (request, response) => {
-
-            response.render('index', {title: 'data.world LTI', client: config['client_id']});
-
-        });
-
-        router.get('/lti/config', (request, response) => {
-
-            let hostUrl = url.format({
-
-                protocol: request.protocol,
-                host: request.get('host'),
-                pathname: request.originalUrl
-
-            });
-
-            response.set('Content-Type', 'text/xml');
-
-            response.render('config', {
-
-                "launch_url": hostUrl + "/lti/launch",
-                "title": "data.world",
-                "description": "Provides users access to their data.world resources.",
-                "extensions": [
-                    {
-                        "platform": "canvas.instructure.com",
-                        "tool_id": "course_navigation",
-                        "privacy_level": "public",
-                        "course_navigation": {
-                            "host_url": hostUrl,
-                            "default": "enabled",
-                            "visibility": "members",
-                            "enabled": "true",
-                            "text": "data.world"
-
-
-                        }
-                    }
-                ]
-
-            });
-
-        });
-
-        this.express.use('/', router);
+        this.express.use('/lti', ltiRouter);
         this.express.use('/oauth/ddw', ddwRouter);
+
+        this.express.use('*', clientRouter);
 
     }
 

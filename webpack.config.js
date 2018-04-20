@@ -1,6 +1,7 @@
 const path = require("path");
 
 module.exports = (env) => ({
+    mode: 'production',
     entry: {
         app: "./src/client/index",
         styles: "./src/client/scss/styles.scss"

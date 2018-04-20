@@ -1,8 +1,47 @@
-const express = require('express');
-const router = express.Router();
+import * as express from 'express';
+import * as url from 'url';
+export const router = express.Router();
 
-const crud = require('./controllers');
-const provider = require('./provider');
+router.get('/config', (request: express.Request, response: express.Response) => {
+
+    let hostUrl = url.format({
+
+        protocol: request.protocol,
+        host: request.get('host'),
+        pathname: request.originalUrl
+
+    });
+
+    response.set('Content-Type', 'text/xml');
+
+    response.render('config', {
+
+        "launch_url": hostUrl + "/lti/launch",
+        "title": "data.world",
+        "description": "Provides users access to their data.world resources.",
+        "extensions": [
+            {
+                "platform": "canvas.instructure.com",
+                "tool_id": "course_navigation",
+                "privacy_level": "public",
+                "course_navigation": {
+                    "host_url": hostUrl,
+                    "default": "enabled",
+                    "visibility": "members",
+                    "enabled": "true",
+                    "text": "data.world"
+
+
+                }
+            }
+        ]
+
+    });
+
+});
+
+// const crud = require('./controllers');
+// const provider = require('./provider');
 
 // router.post('/config', (request, response) => {
 //
@@ -63,5 +102,3 @@ const provider = require('./provider');
 //
 //
 // });
-
-module.exports = router;
