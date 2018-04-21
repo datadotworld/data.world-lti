@@ -6,7 +6,7 @@ router.all('/config', (request: express.Request, response: express.Response) => 
 
     let launchUrl = url.format({
 
-        protocol: request.protocol,
+        protocol: (process.env.NODE_ENV === "production") ? 'https' : request.protocol,
         host: request.get('host'),
         pathname: "/lti/launch"
 
@@ -41,6 +41,6 @@ router.all('/config', (request: express.Request, response: express.Response) => 
 
 router.post('/launch', (request, response) => {
 
-    response.json(request.body);
+    response.render('launch', request.body);
 
 });
