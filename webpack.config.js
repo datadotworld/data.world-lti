@@ -4,6 +4,7 @@ module.exports = (env) => ({
     mode: 'production',
     entry: {
         app: "./src/client/index",
+        launch: "./src/client/launch",
         styles: "./src/client/scss/styles.scss"
     },
     output: {

@@ -5,6 +5,7 @@ module.exports = (env) => ({
     devtool: "inline-source-map",
     entry: {
         app: "./src/client/index",
+        launch: "./src/client/launch",
         styles: "./src/client/scss/styles.scss"
     },
     output: {

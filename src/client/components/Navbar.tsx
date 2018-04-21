@@ -1,5 +1,4 @@
 import * as React from "react";
-import { NavLink } from 'react-router-dom'
 
 export interface NavbarProps {}
 
@@ -21,15 +20,9 @@ export class Navbar extends React.Component<NavbarProps, {}> {
                 </a>
                 <div className="navbar-nav-scroll">
                     <ul className="navbar-nav bd-navbar-nav flex-row">
-                        <li className="nav-item">
-                            <NavLink exact className="nav-link" to="/">Info</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink exact className="nav-link" to="/config">XML Config</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink exact className="nav-link" to="/register">Registration</NavLink>
-                        </li>
+
+                        {this.props.children}
+
                     </ul>
                 </div>
             </header>

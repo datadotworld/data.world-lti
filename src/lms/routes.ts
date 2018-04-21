@@ -39,7 +39,7 @@ router.all('/config', (request: express.Request, response: express.Response) => 
 
 });
 
-router.post('/launch', (request, response) => {
+router.all('/launch', (request, response) => {
 
     response.render('launch', request.body);
 
