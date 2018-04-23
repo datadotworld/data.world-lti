@@ -1,9 +1,19 @@
-module.exports = {
+import {Configurable} from './configurable';
 
-    'client_id': process.env.DDW_CLIENT_ID || null,
-    'client_secret': process.env.DDW_CLIENT_SECRET || 'something-secret',
-    'connector_uri': process.env.DDW_CONNECTOR_REDIRECT || 'localhost',
-    'redirect_uri': process.env.DDW_OAUTH_REDIRECT_URI || 'localhost',
-    'response_type': process.env.DDW_OAUTH_RESPONSE_TYPE || 'code'
+export class DataDotWorldConfig extends Configurable<string, any> {
 
-};
+    constructor() {
+
+        super();
+
+        this.setKeyValue('client_id', process.env.DDW_CLIENT_ID || 'default');
+        this.setKeyValue('client_secret', process.env.DDW_CLIENT_SECRET || 'something-secret');
+        this.setKeyValue('connector_uri', process.env.DDW_CLIENT_SECRET || 'localhost');
+        this.setKeyValue('redirect_uri', process.env.DDW_CLIENT_SECRET || 'localhost');
+        this.setKeyValue('response_type', process.env.DDW_OAUTH_RESPONSE_TYPE || 'code');
+
+    }
+
+}
+
+export default new DataDotWorldConfig();

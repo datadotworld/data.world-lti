@@ -1,13 +1,19 @@
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
+import * as crypto from 'crypto';
 import * as express from 'express';
+import * as passport from 'passport';
 import * as path from 'path';
+import * as session from 'express-session';
 
+// TODO: Create Type Definition for this guy...
 const engine = require('mustache-express');
+import DataDotWorldStrategy from './data.world/passport-strategy';
 
-import { router as clientRouter } from './client/routes';
-import { router as ddwRouter } from './data.world/routes';
-import { router as ltiRouter } from './lms/routes';
+import { router as authRouter } from './routers/authentication';
+import { router as clientRouter } from './routers/client';
+import { router as ddwRouter } from './routers/data.world';
+import { router as ltiRouter } from './routers/lti';
 
 /**
  * A wrapper class for managing an express.Application instance.
@@ -30,11 +36,10 @@ export default class App {
 
         this.express = express();
 
-        this.express.engine('mustache', engine());
-        this.express.set('view engine', 'mustache');
-        this.express.set('views', path.resolve(__dirname, 'views'));
+        passport.use(new DataDotWorldStrategy());
 
-        this.express.use(express.static('public'));
+        this.views();
+        this.statics();
         this.middleware();
         this.routes();
 
@@ -50,6 +55,18 @@ export default class App {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
         this.express.use(cookieParser());
+        this.express.use(session({
+
+            cookie: {},
+            name: 'ddw-lti',
+            resave: false,
+            saveUninitialized: true,
+            secret: process.env.SESSION_KEY || crypto.randomBytes(16).toString('hex')
+
+        }));
+        this.express.use(passport.initialize());
+        this.express.use(passport.session());
+
 
     }
 
@@ -63,8 +80,32 @@ export default class App {
 
         this.express.use('/lti', ltiRouter);
         this.express.use('/oauth/ddw', ddwRouter);
-
+        this.express.use('/', authRouter);
         this.express.use('*', clientRouter);
+
+    }
+
+    /**
+     * A method for orchastrating paths for static assets for the express.Application instance.
+     *
+     * @return void
+     */
+    private statics(): void {
+
+        this.express.use(express.static('public'));
+
+    }
+
+    /**
+     * A method for orchastrating the view engine and view directories for the express.Application instance.
+     *
+     * @return void
+     */
+    private views(): void {
+
+        this.express.engine('mustache', engine());
+        this.express.set('view engine', 'mustache');
+        this.express.set('views', path.resolve(__dirname, 'views'));
 
     }
 
