@@ -1,7 +1,5 @@
 import * as OAuth2Strategy from 'passport-oauth2';
 
-import DataDotWorldConfig from '../config/data.world';
-
 function verify(accessToken: string, refreshToken: string, profile: any, done: any) {
 
     return done(null, {
@@ -11,20 +9,19 @@ function verify(accessToken: string, refreshToken: string, profile: any, done: a
         id: 'test',
         created: 'test',
         updated: 'test'
-    })
-
+    });
 }
 
 export default class DataDotWorldStrategy extends OAuth2Strategy {
 
-    constructor(clientId?: string, clientSecret?: string, callbackUrl?: string) {
+    constructor(clientId: string, clientSecret: string, callbackUrl: string) {
 
         let options = {
 
             authorizationURL: 'https://data.world/oauth/authorize',
-            callbackUrl: callbackUrl || DataDotWorldConfig.getKeyValue('redirect_uri'),
-            clientID: clientId || DataDotWorldConfig.getKeyValue('client_id'),
-            clientSecret: clientSecret || DataDotWorldConfig.getKeyValue('clientSecret'),
+            callbackUrl: callbackUrl,
+            clientID: clientId,
+            clientSecret: clientSecret,
             tokenURL: 'https://data.world/oauth/access_token'
 
 

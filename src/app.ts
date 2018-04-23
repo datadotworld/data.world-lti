@@ -8,7 +8,7 @@ import * as session from 'express-session';
 
 // TODO: Create Type Definition for this guy...
 const engine = require('mustache-express');
-import DataDotWorldStrategy from './data.world/passport-strategy';
+import ddwStrategy from './data.world/passport';
 
 import { router as authRouter } from './routers/authentication';
 import { router as clientRouter } from './routers/client';
@@ -36,7 +36,7 @@ export default class App {
 
         this.express = express();
 
-        passport.use(new DataDotWorldStrategy());
+        passport.use(ddwStrategy);
 
         this.views();
         this.statics();
