@@ -14,7 +14,7 @@ function verify(accessToken: string, refreshToken: string, profile: any, done: a
 
 export default class DataDotWorldStrategy extends OAuth2Strategy {
 
-    constructor(clientId: string, clientSecret: string, callbackUrl: string) {
+    constructor(clientId: string, clientSecret: string, callbackUrl: string, redirectUri: string, verificationFn?: any) {
 
         let options = {
 
@@ -22,12 +22,13 @@ export default class DataDotWorldStrategy extends OAuth2Strategy {
             callbackUrl: callbackUrl,
             clientID: clientId,
             clientSecret: clientSecret,
+            redirectUri: redirectUri,
             tokenURL: 'https://data.world/oauth/access_token'
 
 
         } as any;
 
-        super(options, verify);
+        super(options, verificationFn || verify);
 
         this.name = 'data.world';
 
@@ -37,7 +38,15 @@ export default class DataDotWorldStrategy extends OAuth2Strategy {
 
         let params = {} as any;
 
-        params['redirect_uri'] = options['callbackUrl'];
+        params['redirect_uri'] = options['redirectUri'];
+
+        return params;
+
+    }
+
+    tokenParams(options: any): any {
+
+        let params = {} as any;
 
         return params;
 

@@ -7,6 +7,6 @@ router.get('/authorize', passport.authenticate('data.world'));
 
 router.get('/authorize/callback',
 
-    passport.authenticate('data.world', { successRedirect: '/', failureRedirect: '/login' })
+    passport.authenticate('data.world', { failureRedirect: '/login' }, )
 
 );

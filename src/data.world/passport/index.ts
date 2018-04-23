@@ -5,7 +5,8 @@ const strategy = new DataDotWorldStrategy(
 
     DataDotWorldConfig.getKeyValue('client_id'),
     DataDotWorldConfig.getKeyValue('client_secret'),
-    DataDotWorldConfig.getKeyValue('redirect_uri'),
+    DataDotWorldConfig.getKeyValue('connector_uri'),
+    DataDotWorldConfig.getKeyValue('redirect_uri')
 
 );
 

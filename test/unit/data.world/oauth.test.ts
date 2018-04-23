@@ -10,7 +10,7 @@ const axios = require('axios');
 
 import MockAdapter from 'axios-mock-adapter'
 
-const OAuth = require('../../../src/data.world/oauth');
+import OAuth from '../../../src/data.world/oauth';
 
 describe('Unit Test(s) - data.world/OAuth Class', () => {
 
@@ -58,7 +58,7 @@ describe('Unit Test(s) - data.world/OAuth Class', () => {
         let expected = [
 
             oauth.baseInitialRedirectUri,
-            '?client_id=null',
+            '?client_id=default',
             '&redirect_uri=localhost',
             '&response_type=code'
 
@@ -78,7 +78,7 @@ describe('Unit Test(s) - data.world/OAuth Class', () => {
         let expected = [
 
             oauth.baseRequestAccessTokenUri,
-            '?client_id=null',
+            '?client_id=default',
             '&client_secret=something-secret',
             `&code=${code}`,
             '&grant_type=authorization_code'
@@ -99,18 +99,27 @@ describe('Unit Test(s) - data.world/OAuth Class', () => {
 
         let mockAdapter = new MockAdapter(axios);
 
-        mockAdapter.onAny().reply(200, {
+        mockAdapter.onGet('/oauth/ddw/authorize/callback').reply(200, {
 
-            data: {}
+            data: { code: 'zac4ZV2XbleQ2e' }
 
         });
 
-        oauth.requestAccessToken(code)
-            .then((response: any) => {
+        mockAdapter.onPost(oauth.mintRequestAccessTokenUri('zac4ZV2XbleQ2e')).reply(200, {
 
-                done();
+            data: {access_token: 'ABC123', expires_in: 'the_future', refresh_token: 'refresh'}
 
-            }).catch((error: any) => { done(error) });
+        });
+
+        axios.post('https://data.world/oauth/authorize').then((response: any) => {
+
+            oauth.requestAccessToken(code, response);
+
+            expect(response).to.not.be.empty;
+
+        });
+
+        done();
 
     });
 

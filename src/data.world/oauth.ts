@@ -1,4 +1,4 @@
-const config = require('../config/data.world');
+import DataDotWorldConfig from '../config/data.world';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import * as express from 'express';
 
@@ -67,9 +67,9 @@ export default class OAuth {
 
         let params = {
 
-            'client_id': config['client_id'],
-            'redirect_uri': config['redirect_uri'],
-            'response_type': config['response_type']
+            'client_id': DataDotWorldConfig.getKeyValue('client_id'),
+            'redirect_uri': DataDotWorldConfig.getKeyValue('redirect_uri'),
+            'response_type': DataDotWorldConfig.getKeyValue('response_type')
 
         } as any;
 
@@ -95,8 +95,8 @@ export default class OAuth {
 
         let params = {
 
-            'client_id': config['client_id'],
-            'client_secret': config['client_secret'],
+            'client_id': DataDotWorldConfig.getKeyValue('client_id'),
+            'client_secret': DataDotWorldConfig.getKeyValue('client_secret'),
             'code': code,
             'grant_type': 'authorization_code'
 
@@ -118,10 +118,8 @@ export default class OAuth {
      * @param {String} code
      * @param {express.Response} response
      * @param {String|null} redirectUri
-     *
-     * @return {Promise}
      */
-    requestAccessToken(code: string, response: express.Response, redirectUri: string=null) {
+    requestAccessToken(code: string, response: express.Response, redirectUri: string=null): void {
 
         axios.post(this.mintRequestAccessTokenUri(code, redirectUri)).then((tokenResponse: AxiosResponse) => {
 
@@ -129,7 +127,7 @@ export default class OAuth {
 
                 let tokenUrl = this.appendUriParamsToBaseUri(
 
-                    config['connector_uri'],
+                    DataDotWorldConfig.getKeyValue('connector_uri'),
                     {"token": tokenResponse.data.access_token}
 
                 );
@@ -142,7 +140,7 @@ export default class OAuth {
 
                 let errorUrl = this.appendUriParamsToBaseUri(
 
-                    config['connector_uri'],
+                    DataDotWorldConfig.getKeyValue('connector_uri'),
                     {"error": errorMessage}
 
                 );
@@ -157,7 +155,7 @@ export default class OAuth {
 
             let errorUrl = this.appendUriParamsToBaseUri(
 
-                config['connector_uri'],
+                DataDotWorldConfig.getKeyValue('connector_uri'),
                 {"error": errorMessage}
 
             );
