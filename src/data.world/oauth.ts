@@ -2,7 +2,6 @@ import DataDotWorldConfig from '../config/data.world';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import * as express from 'express';
 
-
 /**
  * @class OAuth
  */

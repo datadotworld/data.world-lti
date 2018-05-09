@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html lang="en-us">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>data.world</title>
+</head>
+<body>
+<script src="https://widgets.data.world/dataworld-widgets.js"></script>
+<script>
+
+    var options = {
+        client_id: "{{clientId}}" // Your OAuth client ID
+    };
+
+    var datasetSelector = new window.dataworldWidgets.DatasetSelector(options);
+
+    datasetSelector.success(function (selectedDataset) {
+
+    });
+
+    datasetSelector.cancel(function () {
+        // this will be called when the user clicks outside the dataset selector to close it
+    });
+
+    datasetSelector.show();
+
+</script>
+</body>
+</html>

@@ -117,9 +117,13 @@ describe('Unit Test(s) - data.world/OAuth Class', () => {
 
             expect(response).to.not.be.empty;
 
-        });
+            done();
 
-        done();
+        }).catch((error: any) => {
+
+            done(error);
+
+        });
 
     });
 

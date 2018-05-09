@@ -27,7 +27,7 @@
     "migrate:status": "node_modules/.bin/ts-node src/database/utilities/migrate.ts status",
     "migrate:up": "node_modules/.bin/ts-node src/database/utilities/migrate.ts up",
     "start": "node_modules/.bin/ts-node src/index.ts",
-    "start:development": "NODE_ENV=development npm rum start",
+    "start:development": "NODE_ENV=development; node_modules/.bin/ts-node --watch src/index.ts",
     "test": "mocha -r ts-node/register ./dist/tests.bundle.js"
   },
   "dependencies": {

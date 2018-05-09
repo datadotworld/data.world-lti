@@ -41,6 +41,6 @@ router.all('/config', (request: express.Request, response: express.Response) => 
 
 router.all('/launch', (request, response) => {
 
-    response.render('launch', request.body);
+    response.render('widget', {clientId: process.env.DDW_CLIENT_ID});
 
 });
