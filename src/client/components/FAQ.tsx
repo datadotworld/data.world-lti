@@ -48,7 +48,7 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
                                     <a className="nav-link" href="#install-lti-card">
 
-                                        Install LTI
+                                        Install LTI in LMS Course
 
                                     </a>
 

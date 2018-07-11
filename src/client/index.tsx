@@ -25,7 +25,7 @@ ReactDOM.render(
             <Route exact path="/" render={(props) => (
 
                 <div className="container py-4">
-                    <InfoCard title="Info" body="Body Stuff"/>
+                    <InfoCard title="data.world LTI connector" body="..."/>
                 </div>
 
             )}/>
