@@ -1,14 +1,9 @@
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-import * as crypto from 'crypto';
 import * as express from 'express';
-import * as passport from 'passport';
 import * as path from 'path';
-import * as session from 'express-session';
 
-// TODO: Create Type Definition for this guy...
 const engine = require('mustache-express');
-import ddwStrategy from './data.world/passport';
 
 import { router as authRouter } from './routers/authentication';
 import { router as clientRouter } from './routers/client';
@@ -36,8 +31,6 @@ export default class App {
 
         this.express = express();
 
-        passport.use(ddwStrategy);
-
         this.views();
         this.statics();
         this.middleware();
@@ -55,18 +48,6 @@ export default class App {
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
         this.express.use(cookieParser());
-        this.express.use(session({
-
-            cookie: {},
-            name: 'ddw-lti',
-            resave: false,
-            saveUninitialized: true,
-            secret: process.env.SESSION_KEY || crypto.randomBytes(16).toString('hex')
-
-        }));
-        this.express.use(passport.initialize());
-        this.express.use(passport.session());
-
 
     }
 

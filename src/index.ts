@@ -14,21 +14,21 @@ class Bootstrapper {
      *
      * @type {express.Application}
      */
-    private application: express.Application;
+    private readonly application: express.Application;
 
     /**
      * The port on which the HTTP server will listen.
      *
      * @type {number|string|boolean}
      */
-    private port: number|string|boolean;
+    private readonly port: number|string|boolean;
 
     /**
      * The HTTP server instance for handling traffic for the express.Application instance.
      *
      * @type {http.Server}
      */
-    private server: http.Server;
+    private readonly server: http.Server;
 
     /**
      * Bootstrapper class constructor.

@@ -6,7 +6,6 @@ import { CreateOrganizationTutorial } from "./CreateOrganizationTutorial";
 import { EnableInvitationLinksTutorial } from "./EnableInvitationLinksTutorial";
 import { InstallLTITutorial } from "./InstallLTITutorial";
 
-
 export class FAQ extends React.Component<FAQProps, {}> {
 
     render() {

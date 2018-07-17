@@ -3,5 +3,13 @@
   "description": "A Node application for connecting to data.world through an LTI compliant LMS.",
   "repository": "https://github.com/datadotworld/data.world-lti",
   "keywords": ["node", "express", "heroku", "lms", "LTI"],
-  "image": "heroku/nodejs"
+  "image": "heroku/nodejs",
+  "env": {
+    "DDW_CLIENT_ID": {
+      "description": "data.world OAuth Client ID"
+    },
+    "DDW_LTI_CONFIGURATION_URL": {
+      "description": "The LTI configuration URL that will be used in the LTI installation FAQ"
+    }
+  }
 }

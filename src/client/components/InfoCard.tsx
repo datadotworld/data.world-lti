@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export interface InfoCardProps { title: string; body: string; }
+export interface InfoCardProps { title: string, body: string }
 
 export class InfoCard extends React.Component<InfoCardProps, {}> {
     render() {

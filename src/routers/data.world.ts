@@ -1,12 +1,14 @@
 import * as express from 'express';
-import * as passport from 'passport';
 
+/**
+ * A router object for handling requests for the data.world OAuth handshake.
+ *
+ * @type {express.Router}
+ */
 export const router = express.Router();
 
-router.get('/authorize', passport.authenticate('data.world'));
+router.all(['/authorize', '/authorize/callback'], (request: express.Request, response: express.Response) => {
 
-router.get('/authorize/callback',
+    response.redirect('/');
 
-    passport.authenticate('data.world', { failureRedirect: '/login' }, )
-
-);
+});

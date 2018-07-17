@@ -4,8 +4,10 @@ export interface InstallLTITutorialProps {}
 
 const settings = require('../assets/png/course-settings.png');
 const courseApps = require('../assets/png/course-apps.png');
-const appsSettings = require('../assets/png/course-app-settings.png');
+const appSettings = require('../assets/png/course-app-settings.png');
 const addAppMenu = require('../assets/png/add-app-menu.png');
+
+const ltiConfigUrl = process.env.DDW_LTI_CONFIGURATION_URL || "http://example.com/config.xml";
 
 export class InstallLTITutorial extends React.Component<InstallLTITutorialProps, {}> {
 
@@ -46,7 +48,7 @@ export class InstallLTITutorial extends React.Component<InstallLTITutorialProps,
 
                 </div>
 
-                <img className="card-img rounded-0" src={appsSettings}/>
+                <img className="card-img rounded-0" src={appSettings}/>
 
                 <div className="card-body">
 
@@ -82,7 +84,7 @@ export class InstallLTITutorial extends React.Component<InstallLTITutorialProps,
 
                     <p className="card-text">
 
-                        https://protected-bastion-28884.herokuapp.com/lti/config
+                        {ltiConfigUrl}
 
                     </p>
 
