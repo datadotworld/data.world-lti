@@ -16,11 +16,19 @@ npm run build
 npm run start
 ```
 
-### Tests
+### Testing
+
+#### Unit
+
+Unit tests can be run with the following command:
 
 ```sh
 npm run test
 ```
+
+#### Integration
+
+**Coming Soon**
 
 ### Configuration Variables
 
