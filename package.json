@@ -19,7 +19,7 @@
   "scripts": {
     "build:development": "node_modules/.bin/webpack --env.NODE_ENV=development --watch",
     "build": "node_modules/.bin/webpack --env.NODE_ENV=production --env.production",
-    "postinstall": "npm run build",
+    "docker": "npm run build && npm run start",
     "start": "node_modules/.bin/ts-node src/index.ts",
     "start:development": "NODE_ENV=development; node_modules/.bin/ts-node --watch src/index.ts",
     "test": "mocha -r ts-node/register test/**.test.ts"

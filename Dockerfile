@@ -1,14 +1,14 @@
 FROM node:9-alpine
 
-ENV PORT 3000
-
 WORKDIR /usr/src/app
 
-COPY . .
+COPY ./package.json .
 
 RUN npm install
-RUN npm run build
 
-EXPOSE $PORT
+COPY ./ .
 
-CMD [ "npm", "run", "start" ]
+ENV DDW_LTI_CONFIGURATION_URL http://localhost:3000/lti/config
+ENV PORT 3000
+
+CMD [ "npm", "run", "docker" ]
