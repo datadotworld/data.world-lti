@@ -11,4 +11,4 @@ COPY ./ .
 ENV DDW_LTI_CONFIGURATION_URL http://localhost:3000/lti/config
 ENV PORT 3000
 
-CMD [ "npm", "run", "docker" ]
+CMD [ "npm", "run", "deploy" ]
