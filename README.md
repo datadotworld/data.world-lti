@@ -26,16 +26,36 @@ Unit tests can be run with the following command:
 npm run test
 ```
 
-#### Integration
+#### Integration (Programmatic)
 
-**Coming Soon**
+**TODO: Write integration tests with API calls to an LMS instance running in the lbjay/canvas-docker container. **
+
+#### Integration (Manual)
+
+Just in case one wants to take a peak inside a running LMS instance.
+
+##### Canvas Docker
+
+1. Spin up a test instance of Canvas.
+
+```sh
+docker pull lbjay/canvas-docker
+
+docker run --name canvas-docker -p 3000:3000 -d lbjay/canvas-docker
+```
+
+2. After the container builds and is running, point your browser to [http://localhost:3000](http://localhost:3000).
+
+*Username:* canvas@example.edu
+*Password:* canvas-docker
+
 
 ### Configuration Variables
 
 * `DDW_CLIENT_ID:` data.world OAuth Client ID
 * `DDW_LTI_CONFIGURATION_URL:` The LTI configuration URL that will be used in the LTI installation FAQ.
 * `NODE_ENV:` **default** production
-* `NODE_ENV:` **default** 3000
+* `PORT:` **default** 3000
 
 ### Contributing
 
