@@ -5,11 +5,6 @@ const webpack = require('webpack');
 module.exports = {
 
     mode: "production",
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    },
     plugins: [
 
         new webpack.EnvironmentPlugin({
