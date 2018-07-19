@@ -80,18 +80,26 @@ module.exports = (environment) => {
 
         plugins: [
 
-            new webpack.EnvironmentPlugin(['DDW_LTI_CONFIGURATION_URL'])
+            new webpack.EnvironmentPlugin({
+
+                DDW_LTI_CONFIGURATION_URL: 'http://example.com/lti/condfig'
+
+            })
 
         ]
 
     });
 
-    if (environment.production) {
+    if (process.env.NODE_ENV === 'production') {
 
         return merge(common, {
 
             mode: "production",
-            devtool: "source-map"
+            optimization: {
+                splitChunks: {
+                    chunks: 'all'
+                }
+            }
 
         });
 

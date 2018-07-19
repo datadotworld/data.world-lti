@@ -13,15 +13,16 @@
   },
   "main": "src/index.ts",
   "engines": {
-    "node": "^9.6.1",
-    "npm": "^5.6.0"
+    "node": "^9.11.2",
+    "npm": "^5.10.0"
   },
   "scripts": {
     "build:development": "node_modules/.bin/webpack --env.NODE_ENV=development --watch",
     "build": "node_modules/.bin/webpack -p --env.production",
-    "deploy": "npm run build && npm run start",
+    "prestart": "npm run build",
     "start": "node_modules/.bin/ts-node src/index.ts",
     "start:development": "NODE_ENV=development; node_modules/.bin/ts-node --watch src/index.ts",
+    "start:docker": "npm run build && npm run start",
     "test": "mocha -r ts-node/register test/**.test.ts"
   },
   "dependencies": {
@@ -30,14 +31,14 @@
     "express": "^4.16.2",
     "jquery": "^3.3.1",
     "mustache-express": "^1.2.5",
-    "npm": "^5.8.0",
+    "npm": "^6.2.0",
     "popper.js": "^1.14.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
     "react-router-dom": "^4.2.2",
     "reflect-metadata": "^0.1.12",
     "ts-loader": "^4.1.0",
-    "ts-node": "^5.0.1",
+    "ts-node": "^7.0.0",
     "typescript": "^2.8.1",
     "xml-formatter": "^1.0.1"
   },
@@ -49,11 +50,11 @@
     "@types/faker": "^4.1.2",
     "@types/mocha": "^5.0.0",
     "@types/mustache": "^0.8.30",
-    "@types/node": "^8.10.0",
+    "@types/node": "^10.5.2",
     "@types/react": "^16.1.0",
     "@types/react-dom": "^16.0.4",
     "@types/react-router-dom": "^4.2.6",
-    "autoprefixer": "^8.2.0",
+    "autoprefixer": "^9.0.0",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "faker": "^4.1.0",
@@ -65,12 +66,12 @@
     "postcss-loader": "^2.1.3",
     "precss": "^3.1.2",
     "raw-loader": "^0.5.1",
-    "sass-loader": "^6.0.7",
+    "sass-loader": "^7.0.3",
     "source-map-loader": "^0.2.3",
-    "style-loader": "^0.20.3",
+    "style-loader": "^0.21.0",
     "svg-inline-loader": "^0.8.0",
     "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13",
+    "webpack-cli": "^3.1.0",
     "webpack-merge": "^4.1.2"
   }
 }
