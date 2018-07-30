@@ -2,6 +2,7 @@ import * as React from "react";
 
 export interface FAQProps {}
 
+import { CreateClassroom } from "./CreateClassroom";
 import { CreateOrganizationTutorial } from "./CreateOrganizationTutorial";
 import { EnableInvitationLinksTutorial } from "./EnableInvitationLinksTutorial";
 import { InstallLTITutorial } from "./InstallLTITutorial";
@@ -25,7 +26,17 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
                                 <li className="nav-item">
 
-                                    <a className="nav-link active" href="#create-organization-card">
+                                    <a className="nav-link active" href="#create-classroom-card">
+
+                                        How to set up a classroom on data.world
+
+                                    </a>
+
+                                </li>
+
+                                <li className="nav-item">
+
+                                    <a className="nav-link" href="#create-organization-card">
 
                                         Create a new Organization
 
@@ -64,6 +75,7 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
                 <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
 
+                    <CreateClassroom/>
                     <CreateOrganizationTutorial/>
                     <EnableInvitationLinksTutorial/>
                     <InstallLTITutorial/>
