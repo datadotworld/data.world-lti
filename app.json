@@ -8,8 +8,9 @@
     "DDW_CLIENT_ID": {
       "description": "data.world OAuth Client ID"
     },
-    "DDW_LTI_CONFIGURATION_URL": {
+    "DDW_LTI_CONFIGURATION_HOST": {
       "description": "The LTI configuration URL that will be used in the LTI installation FAQ"
-    }
+    },
+    "DDW_LTI_LAUNCH_HOST": "The publicly accessible hostname for LTI content for use in testing."
   }
 }

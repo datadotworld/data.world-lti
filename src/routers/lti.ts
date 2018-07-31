@@ -12,8 +12,8 @@ router.all('/config', (request: express.Request, response: express.Response) => 
 
     let launchUrl = url.format({
 
-        protocol: (process.env.NODE_ENV === "production") ? 'https' : request.protocol,
-        host: request.get('host'),
+        protocol: (process.env.DDW_LTI_SECURE === "false") ? 'http' : "https",
+        host: process.env.DDW_LTI_LAUNCH_HOST || request.get('host'),
         pathname: "/lti/launch"
 
     });

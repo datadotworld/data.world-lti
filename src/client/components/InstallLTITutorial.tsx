@@ -1,3 +1,4 @@
+import * as url from 'url';
 import * as React from "react";
 
 export interface InstallLTITutorialProps {}
@@ -7,7 +8,13 @@ const courseApps = require('../assets/png/course-apps.png');
 const appSettings = require('../assets/png/course-app-settings.png');
 const addAppMenu = require('../assets/png/add-app-menu.png');
 
-const ltiConfigUrl = process.env.DDW_LTI_CONFIGURATION_URL || "http://example.com/config.xml";
+const ltiConfigUrl = url.format({
+
+    protocol: (process.env.DDW_LTI_SECURE === "false") ? 'http' : "https",
+    host: process.env.DDW_LTI_CONFIGURATION_HOST || 'example.com',
+    pathname: "/lti/config"
+
+});
 
 export class InstallLTITutorial extends React.Component<InstallLTITutorialProps, {}> {
 

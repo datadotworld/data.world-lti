@@ -9,7 +9,8 @@ module.exports = {
 
         new webpack.EnvironmentPlugin({
 
-            DDW_LTI_CONFIGURATION_URL: 'http://example.com/lti/condfig'
+            DDW_LTI_CONFIGURATION_HOST: 'example.com',
+            DDW_LTI_SECURE: 'true'
 
         })
 

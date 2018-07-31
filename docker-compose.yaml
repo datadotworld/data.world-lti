@@ -1,0 +1,31 @@
+version: "3"
+services:
+  lti:
+    build:
+      context: .
+    container_name: ddw-lti
+    environment:
+      DDW_LTI_CLIENT_ID: something-secret
+      DDW_LTI_CONFIGURATION_HOST: 172.16.238.10:3000
+      DDW_LTI_LAUNCH_HOST: localhost:5000
+      DDW_LTI_SECURE: "false"
+    ports:
+      - 5000:3000
+    networks:
+      lms:
+        ipv4_address: 172.16.238.10
+  canvas:
+    image: lbjay/canvas-docker
+    ports:
+      - 3000:3000
+    networks:
+      lms:
+        ipv4_address: 172.16.238.11
+networks:
+  lms:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.16.238.0/24

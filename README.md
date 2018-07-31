@@ -26,35 +26,32 @@ Unit tests can be run with the following command:
 npm run test
 ```
 
-#### Integration (Programmatic)
-
-*TODO: Write integration tests with API calls to an LMS instance running in the lbjay/canvas-docker container.*
-
-#### Integration (Manual)
+#### Integration
 
 Just in case one wants to take a peak inside a running LMS instance.
 
-##### Canvas Docker
-
-1. Spin up a test instance of Canvas. More info about the lbjay/canvas-docker container can be found over at [DockerHub](https://hub.docker.com/r/lbjay/canvas-docker/).
+1. Spin up a test instance of Canvas linked with the LTI running in another container. More info about the lbjay/canvas-docker container can be found over at [DockerHub](https://hub.docker.com/r/lbjay/canvas-docker/).
 
 ```sh
-docker pull lbjay/canvas-docker
-
-docker run --name canvas-docker -p 3000:3000 -d lbjay/canvas-docker
+docker-compose up --build
 ```
 
-2. After the container builds and is running, point your browser to [http://localhost:3000](http://localhost:3000).
+2. After the containers build and are running, point your browser to [http://localhost:3000](http://localhost:3000) and login.
 
   - Username: `canvas@example.edu`
   - Password: `canvas-docker`
+
+3. Create a new course in Canvas and the follow the installation instructions in the [FAQ](http://localhost:5000/faq#install-lti-card).
+
+** You might have to navigate out from the application installation area to the main course page for the side bar link to propagate. **
 
 
 ### Configuration Variables
 
 * `DDW_CLIENT_ID` - data.world OAuth Client ID
-* `DDW_LTI_CONFIGURATION_URL` - The LTI configuration URL that will be used in the LTI installation FAQ.
-* `NODE_ENV` - **default** production
+* `DDW_LTI_CONFIGURATION_HOST` - The LTI configuration URL that will be used in the LTI installation FAQ.
+* `DDW_LTI_LAUNCH_HOST` - The publicly accessible hostname for LTI content for use in testing.
+* `DDW_LTI_SECURE` - Sets the protocol of dynamically produced URLs from https/http **default** true
 * `PORT` - **default** 3000
 
 ### Contributing
