@@ -5,6 +5,7 @@ export interface CreateClassroomProps {}
 const classroom = require('../assets/png/classroom-one.png');
 const classroomTwo = require('../assets/png/classroom-two.png');
 const classroomThree = require('../assets/png/classroom-three.png');
+
 const ltiConfigUrl = process.env.DDW_LTI_CONFIGURATION_URL || "http://example.com/config.xml";
 
 export class CreateClassroom extends React.Component<CreateClassroomProps, {}> {

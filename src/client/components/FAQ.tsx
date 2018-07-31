@@ -3,7 +3,6 @@ import * as React from "react";
 export interface FAQProps {}
 
 import { CreateClassroom } from "./CreateClassroom";
-import { EnableInvitationLinksTutorial } from "./EnableInvitationLinksTutorial";
 import { InstallLTITutorial } from "./InstallLTITutorial";
 
 export class FAQ extends React.Component<FAQProps, {}> {
@@ -35,16 +34,6 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
                                 <li className="nav-item">
 
-                                    <a className="nav-link" href="#enable-invitation-links-card">
-
-                                        Enable Invitation Links
-
-                                    </a>
-
-                                </li>
-
-                                <li className="nav-item">
-
                                     <a className="nav-link" href="#install-lti-card">
 
                                         Install LTI in LMS Course
@@ -65,7 +54,6 @@ export class FAQ extends React.Component<FAQProps, {}> {
                 <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
 
                     <CreateClassroom/>
-                    <EnableInvitationLinksTutorial/>
                     <InstallLTITutorial/>
 
                 </div>
