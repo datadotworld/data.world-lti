@@ -17,7 +17,17 @@
     var datasetSelector = new window.dataworldWidgets.DatasetSelector(options);
 
     datasetSelector.success(function (selectedDataset) {
-        console.log(selectedDataset);
+
+        var el = document.createElement('textarea');
+        el.value = "https://data.world/" + selectedDataset[0]['owner'] + "/" + selectedDataset[0]['id'];
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.getElementById("root").appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+
     });
 
     datasetSelector.show();
