@@ -30,8 +30,10 @@
 
     });
 
-    datasetSelector.cancel(function () {
-        console.log('wiget closed');
+    datasetSelector.close(function () {
+
+        this.show();
+
     });
 
     datasetSelector.show();
