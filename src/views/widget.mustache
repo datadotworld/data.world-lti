@@ -10,10 +10,15 @@
 <script>
 
     var options = {
-        client_id: "{{clientId}}"
+        client_id: "{{clientId}}",
+        linkText: "Copy Link"
     };
 
     var datasetSelector = new window.dataworldWidgets.DatasetSelector(options);
+
+    datasetSelector.success(function (selectedDataset) {
+        console.log(selectedDataset);
+    });
 
     datasetSelector.show();
 
