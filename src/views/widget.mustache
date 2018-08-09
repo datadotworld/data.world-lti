@@ -11,15 +11,18 @@
 
     var options = {
         client_id: "{{clientId}}",
-        linkText: "Copy Link"
+        linkText: "View",
+        hideViewButton: true
+
     };
 
     var datasetSelector = new window.dataworldWidgets.DatasetSelector(options);
 
     datasetSelector.success(function (selectedDataset) {
 
-        var el = document.createElement('textarea');
-        el.value = "https://data.world/" + selectedDataset[0]['owner'] + "/" + selectedDataset[0]['id'];
+        var el = document.createElement('a');
+        // el.target = "_blank";
+        el.href = "https://data.world/" + selectedDataset[0]['owner'] + "/" + selectedDataset[0]['id'];
         el.setAttribute('readonly', '');
         el.style.position = 'absolute';
         el.style.left = '-9999px';
@@ -27,12 +30,6 @@
         el.select();
         document.execCommand('copy');
         document.body.removeChild(el);
-
-    });
-
-    datasetSelector.close(function () {
-
-        this.show();
 
     });
 
