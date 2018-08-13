@@ -101,7 +101,7 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
                            aria-describedby="configurationURL"
                            readOnly={this.state.readOnly}/>
                         <div className={this.state.copyBtnStyle}>
-                            <button className="btn btn-info" type="button" onClick={this.handleCopyBtnClick}>
+                            <button className="btn btn-primary text-white" type="button" onClick={this.handleCopyBtnClick}>
                                 Copy
                             </button>
                         </div>

@@ -62,7 +62,11 @@ export class CourseAnnouncement extends React.Component<CourseAnnouncementProps,
                                     <a className="btn btn-outline-primary w-100" target="_blank" href="https://data.world">Join</a>
                                 </div>
                                 <div className="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-2 mt-sm-2 mt-md-0">
-                                    <button type="button" className="btn btn-primary text-white w-100">Explore!</button>
+                                    <button type="button" className="btn btn-primary text-white w-100" onClick={this.handleExploreClick}>
+
+                                        Explore!
+
+                                    </button>
                                 </div>
                             </div>
 
