@@ -32,23 +32,9 @@
             el.click();
             document.body.removeChild(el);
 
-            initWidget();
-
         });
 
         datasetSelector.show();
-
-        var x = new MutationObserver(function (e) {
-
-            if (e[0].removedNodes) {
-
-                console.log("Modal Removed!");
-
-            }
-
-        });
-
-        x.observe(document.getElementById('dataworld-dataset-selector-modal'), { childList: true });
 
     }
 

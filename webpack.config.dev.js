@@ -23,6 +23,9 @@ module.exports = {
     resolve: {
         extensions: [".tsx", ".ts", ".js", ".json", ".scss"]
     },
+    externals: {
+        dataworldWidgets: "dataworldWidgets"
+    },
     module: {
         rules: [
             {

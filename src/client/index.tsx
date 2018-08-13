@@ -7,6 +7,9 @@ import { InfoCard } from "./components/InfoCard";
 import { Navbar } from "./components/Navbar";
 import { FAQ } from "./components/FAQ";
 
+// const dataworld = require('dataworldWidgets');
+// const wiget = new dataworld.DatasetSelector({ client_id: 'test'});
+
 ReactDOM.render(
 
     <Router>
@@ -25,7 +28,7 @@ ReactDOM.render(
             <Route exact path="/" render={(props) => (
 
                 <div className="container py-4">
-                    <InfoCard title="data.world LTI connector" body="..."/>
+                    <InfoCard title="Welcome" body="..."/>
                 </div>
 
             )}/>
