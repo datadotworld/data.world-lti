@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as url from 'url';
 
+
 /**
  * A router object for handling requests from an LTI compliant LMS.
  *
@@ -49,8 +50,6 @@ router.all('/config', (request: express.Request, response: express.Response) => 
                     "visibility": "members",
                     "enabled": "true",
                     "text": "data.world"
-
-
                 }
             }
         ]
@@ -61,6 +60,11 @@ router.all('/config', (request: express.Request, response: express.Response) => 
 
 router.all('/launch', (request: express.Request, response: express.Response) => {
 
-    response.render('widget', {clientId: process.env.DDW_CLIENT_ID});
+    response.render('launch', {
+
+        title: 'lti-launch',
+        context: JSON.stringify(request.body)
+
+    });
 
 });

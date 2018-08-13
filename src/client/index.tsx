@@ -7,9 +7,6 @@ import { InfoCard } from "./components/InfoCard";
 import { Navbar } from "./components/Navbar";
 import { FAQ } from "./components/FAQ";
 
-// const dataworld = require('dataworldWidgets');
-// const wiget = new dataworld.DatasetSelector({ client_id: 'test'});
-
 ReactDOM.render(
 
     <Router>

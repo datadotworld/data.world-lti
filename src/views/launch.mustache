@@ -8,6 +8,17 @@
     <body>
         <div id="root"></div>
         <script type="text/javascript" src="/styles.min.js"></script>
-        <script type="text/javascript" src="/app.min.js"></script>
+        <script type="text/javascript" src="/launch.min.js"></script>
+        <script>
+
+            var config = {
+
+                context: {{&context}}
+
+            };
+
+            Window.DDW_LTI.initialize(config);
+
+        </script>
     </body>
 </html>

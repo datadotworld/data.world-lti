@@ -69,6 +69,16 @@ describe('Unit Tests(s) - routers/lti module', () => {
 
     });
 
+    it('POST /lti/config with query params should return xml response', () => {
+
+        return chai.request(server).post('/lti/config?param1=value1').then((response) => {
+
+            expect(response).to.have.header('content-type', 'text/xml; charset=utf-8');
+
+        });
+
+    });
+
     it('POST /lti/launch should return an html response', () => {
 
         return chai.request(server).post('/lti/launch').then((response) => {
@@ -79,11 +89,15 @@ describe('Unit Tests(s) - routers/lti module', () => {
 
     });
 
-    it('POST /lti/config with query params should return xml response', () => {
+    it('POST /lti/launch with JSON body should return an html response', () => {
 
-        return chai.request(server).get('/lti/config?param1=value1').then((response) => {
+        return chai.request(server)
+            .post('/lti/launch')
+            .type('json')
+            .send({param: "value"})
+            .then((response) => {
 
-            expect(response).to.have.header('content-type', 'text/xml; charset=utf-8');
+            expect(response).to.have.header('content-type', 'text/html; charset=utf-8');
 
         });
 

@@ -17,6 +17,7 @@ module.exports = {
     ],
     entry: {
         app: "./src/client/index",
+        launch: "./src/client/launch",
         styles: "./src/client/scss/styles.scss"
     },
     output: {
@@ -25,7 +26,7 @@ module.exports = {
         filename: "[name].min.js"
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js", ".json", ".scss"]
+        extensions: [".tsx", ".ts", ".jsx", ".js", ".json", ".scss"]
     },
     externals: {
         dataworldWidgets: "dataworldWidgets"
