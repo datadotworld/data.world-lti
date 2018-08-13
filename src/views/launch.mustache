@@ -7,18 +7,23 @@
     </head>
     <body>
         <div id="root"></div>
-        <script type="text/javascript" src="/styles.min.js"></script>
-        <script type="text/javascript" src="/launch.min.js"></script>
         <script>
 
-            var config = {
+            let config = { context: {{&context}} };
 
-                context: {{&context}}
+            Window.DDW_LTI_CONTEXT = config['context'];
+            Window.DDW_WIDGET_OPTIONS = {
+
+                client_id: "{{clientId}}",
+                hideLinkButton: true,
+                query: config['context']['custom_ddw_course_org']
 
             };
 
-            Window.DDW_LTI.initialize(config);
 
         </script>
+        <script src="https://widgets.data.world/dataworld-widgets.js"></script>
+        <script type="text/javascript" src="/styles.min.js"></script>
+        <script type="text/javascript" src="/launch.min.js"></script>
     </body>
 </html>

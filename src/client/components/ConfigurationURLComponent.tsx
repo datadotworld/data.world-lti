@@ -16,13 +16,22 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
             courseOrg: '',
             inputStyle: 'form-control-plaintext',
             readOnly: true,
-            copyBtnStyle: 'input-group-append d-none'
+            copyBtnStyle: 'input-group-append d-none',
+            invitationLink: ''
 
         };
 
+        this.handleChangeInvitationLink = this.handleChangeInvitationLink.bind(this);
         this.handleChangeCourseOrg = this.handleChangeCourseOrg.bind(this);
         this.handleCopyBtnClick = this.handleCopyBtnClick.bind(this);
         this.handleClick = this.handleClick.bind(this);
+
+    }
+
+    getOrgOwnerFromUrl(orgUrl: string) {
+
+        let parsed = url.parse(orgUrl);
+        return parsed['pathname'].split("/")[1];
 
     }
 
@@ -30,6 +39,13 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
 
         event.preventDefault();
         this.setState({courseOrg: event.target.value});
+
+    }
+
+    handleChangeInvitationLink(event: React.ChangeEvent<HTMLInputElement>) {
+
+        event.preventDefault();
+        this.setState({invitationLink: event.target.value});
 
     }
 
@@ -43,7 +59,8 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
             host: process.env.DDW_LTI_CONFIGURATION_HOST || 'example.com',
             pathname: "/lti/config",
             query: {
-                'custom_ddw_course_org': this.state.courseOrg
+                'custom_ddw_course_org': this.getOrgOwnerFromUrl(this.state.courseOrg),
+                'custom_ddw_org_invite_link': this.state.invitationLink
             }
 
         });
@@ -91,15 +108,22 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
                 </div>
 
             </div>,
-            <label htmlFor="courseOrg">Course Organization</label>,
+            <label htmlFor="courseOrg">Course Configuration</label>,
             <div className="input-group mb-3">
                 <div className = "input-group-prepend">
-                    <span className="input-group-text" id="courseOrgLabel">Organization URL</span>
+                    <span className="input-group-text min-width-160" id="courseOrgLabel">Organization URL</span>
                 </div>
                 <input type="text" className="form-control" id="courseOrg" aria-describedby="courseOrgLabel"
                     value={this.state.courseOrg} onChange={this.handleChangeCourseOrg}/>
             </div>,
-            <button type="button" className="btn btn-primary" onClick={this.handleClick}>
+            <div className="input-group mb-3">
+                <div className = "input-group-prepend">
+                    <span className="input-group-text min-width-160" id="courseOrgLabel">Invitation Link</span>
+                </div>
+                <input type="text" className="form-control" id="invitationLink" aria-describedby="invitationLinkLabel"
+                       value={this.state.invitationLink} onChange={this.handleChangeInvitationLink}/>
+            </div>,
+            <button type="button" className="btn btn-primary text-white" onClick={this.handleClick}>
 
                 Generate
 

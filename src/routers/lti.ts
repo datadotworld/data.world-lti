@@ -62,7 +62,8 @@ router.all('/launch', (request: express.Request, response: express.Response) => 
 
     response.render('launch', {
 
-        title: 'lti-launch',
+        title: 'data.world LTI',
+        clientId: process.env.DDW_CLIENT_ID,
         context: JSON.stringify(request.body)
 
     });

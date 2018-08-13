@@ -21,7 +21,7 @@
     "build": "node_modules/.bin/webpack -p",
     "prestart": "npm run build",
     "start": "node_modules/.bin/ts-node src/index.ts",
-    "start:development": "NODE_ENV=development; node_modules/.bin/ts-node --watch src/index.ts",
+    "start:development": "node_modules/.bin/ts-node src/index.ts --watch",
     "start:docker": "npm run build && npm run start",
     "test": "mocha -r ts-node/register test/**.test.ts"
   },

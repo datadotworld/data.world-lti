@@ -2,31 +2,24 @@ import 'bootstrap';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { Navbar } from "./components/Navbar";
 import { CourseAnnouncement } from "./components/CourseAnnouncement";
+import { Navbar } from "./components/Navbar";
 
+const context = (Window as any).DDW_LTI_CONTEXT || {};
+const widgetOptions = (Window as any).DDW_WIDGET_OPTIONS || {};
+const dataworld = require('dataworldWidgets');
+const widget = new dataworld.DatasetSelector(widgetOptions);
 
-(Window as any).DDW_LTI = (Window as any).DDW_LTI || (() => {
+ReactDOM.render(
 
-    return {
+    [
+        <Navbar/>,
+        <CourseAnnouncement name={context['lis_person_name_given']}
+                            invitationLink={context['custom_ddw_org_invite_link']}
+                            widget={widget}/>
 
-        initialize: (config: any) => {
+    ],
+    document.getElementById('root')
 
-            ReactDOM.render(
+);
 
-                <div>
-
-                    <Navbar/>
-                    <CourseAnnouncement text="This is a primary alert—check it out!"/>
-
-                </div>,
-
-                document.getElementById("root")
-
-            );
-
-        }
-
-    };
-
-})();
