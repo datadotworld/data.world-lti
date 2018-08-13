@@ -1,20 +1,27 @@
 import * as url from "url";
 import * as React from "react";
-import {ReactPropTypes} from "react";
 
 
 export class ConfigurationURLComponent extends React.Component<any, any> {
 
-    constructor(props: ReactPropTypes) {
+    private configUrlInput: HTMLInputElement;
+
+    constructor(props: React.ReactPropTypes) {
 
         super(props);
+
         this.state = {
 
-            configurationUrl: 'Populate the following field(s) to generate a configuration URL.',
-            courseOrg: ''
+            configurationUrl: '',
+            courseOrg: '',
+            inputStyle: 'form-control-plaintext',
+            readOnly: true,
+            copyBtnStyle: 'input-group-append d-none'
 
         };
+
         this.handleChangeCourseOrg = this.handleChangeCourseOrg.bind(this);
+        this.handleCopyBtnClick = this.handleCopyBtnClick.bind(this);
         this.handleClick = this.handleClick.bind(this);
 
     }
@@ -41,7 +48,22 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
 
         });
 
-        this.setState({configurationUrl: ltiConfigUrl});
+        this.setState({
+
+            configurationUrl: ltiConfigUrl,
+            readOnly: false,
+            inputStyle: 'form-control',
+            copyBtnStyle: 'input-group-append'
+
+        });
+
+    }
+
+    handleCopyBtnClick(event: React.MouseEvent<HTMLElement>) {
+
+        event.preventDefault();
+        this.configUrlInput.select();
+        document.execCommand('copy')
 
     }
 
@@ -51,8 +73,22 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
             <div className="form-group">
 
                 <label htmlFor="configurationURL">Config URL</label>
-                <input id="configurationURL" className="form-control-plaintext" type="text"
-                       placeholder={this.state.configurationUrl} readOnly/>
+
+                <div className="input-group mb-3">
+                    <input id="configurationURL" type="text"
+                           ref={(ref) => {this.configUrlInput = ref}}
+                           className={this.state.inputStyle}
+                           value={this.state.configurationUrl}
+                           placeholder="Populate the following field(s) to generate a configuration URL."
+                           aria-label="Configuration URL"
+                           aria-describedby="configurationURL"
+                           readOnly={this.state.readOnly}/>
+                        <div className={this.state.copyBtnStyle}>
+                            <button className="btn btn-info" type="button" onClick={this.handleCopyBtnClick}>
+                                Copy
+                            </button>
+                        </div>
+                </div>
 
             </div>,
             <label htmlFor="courseOrg">Course Organization</label>,
