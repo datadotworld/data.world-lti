@@ -18,6 +18,19 @@ router.all('/config', (request: express.Request, response: express.Response) => 
 
     });
 
+    let customParams = [];
+
+    for (const key in request.query) {
+
+        if (request.query.hasOwnProperty(key)) {
+
+            let value = request.query[key];
+            customParams.push({ "key": key, "value": value })
+
+        }
+
+    }
+
     response.set('Content-Type', 'text/xml');
 
     response.render('config', {
@@ -25,6 +38,7 @@ router.all('/config', (request: express.Request, response: express.Response) => 
         "launch_url": launchUrl,
         "title": "data.world",
         "description": "Provides users access to their data.world resources.",
+        "customs": customParams,
         "extensions": [
             {
                 "platform": "canvas.instructure.com",

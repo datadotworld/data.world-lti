@@ -79,4 +79,14 @@ describe('Unit Tests(s) - routers/lti module', () => {
 
     });
 
+    it('POST /lti/config with query params should return xml response', () => {
+
+        return chai.request(server).get('/lti/config?param1=value1').then((response) => {
+
+            expect(response).to.have.header('content-type', 'text/xml; charset=utf-8');
+
+        });
+
+    });
+
 });

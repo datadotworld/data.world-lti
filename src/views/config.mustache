@@ -11,6 +11,11 @@
     <blti:launch_url>{{& launch_url}}</blti:launch_url>
     <blti:title>{{title}}</blti:title>
     <blti:description>{{description}}</blti:description>
+    {{#customs}}
+        <blti:custom>
+            <lticm:property name="{{key}}">{{value}}</lticm:property>
+        </blti:custom>
+    {{/customs}}
     {{#extensions}}
         <blti:extensions platform="{{platform}}">
             <lticm:property name="tool_id">{{tool_id}}</lticm:property>
