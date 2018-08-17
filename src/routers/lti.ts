@@ -1,7 +1,6 @@
 import * as express from 'express';
 import * as url from 'url';
 
-
 /**
  * A router object for handling requests from an LTI compliant LMS.
  *

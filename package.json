@@ -11,20 +11,15 @@
   "bugs": {
     "url": "https://github.com/datadotworld/data.world-lti/issues"
   },
-  "main": "src/index.ts",
   "engines": {
     "node": "^9.11.2",
     "npm": "^5.10.0"
   },
   "scripts": {
-    "build:styles": "node_modules/.bin/webpack --config-name styles",
-    "build:typescript": "node_modules/.bin/webpack --config-name typescript",
-    "build:development": "node_modules/.bin/webpack --config webpack.config.dev.js --watch",
     "build": "node_modules/.bin/webpack",
+    "prestart": "npm prune --production",
     "postinstall": "npm run build",
-    "start": "node_modules/.bin/ts-node src/index.ts",
-    "start:development": "node_modules/.bin/ts-node src/index.ts --watch",
-    "start:docker": "npm run build && npm run start",
+    "start": "node -r ts-node/register/transpile-only src/index.ts",
     "test": "mocha -r ts-node/register test/**.test.ts"
   },
   "dependencies": {

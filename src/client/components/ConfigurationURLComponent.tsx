@@ -1,6 +1,8 @@
 import * as url from "url";
 import * as React from "react";
 
+const config = (Window as any).DDW_LTI_CONFIG || {};
+
 
 export class ConfigurationURLComponent extends React.Component<any, any> {
 
@@ -55,8 +57,8 @@ export class ConfigurationURLComponent extends React.Component<any, any> {
 
         let ltiConfigUrl = url.format({
 
-            protocol: (process.env.DDW_LTI_SECURE === "false") ? 'http' : "https",
-            host: process.env.DDW_LTI_CONFIGURATION_HOST || 'example.com',
+            protocol: config['protocol'],
+            host: config['host'],
             pathname: "/lti/config",
             query: {
                 'custom_ddw_course_org': this.getOrgOwnerFromUrl(this.state.courseOrg),

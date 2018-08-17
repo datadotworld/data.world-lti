@@ -1,13 +1,14 @@
 const path = require("path");
 
+
 module.exports = [
 
     {
-        name: "typescript",
+        name: "client-ts",
         mode: "production",
         entry: {
             app: "./src/client/index.tsx",
-            launch: "./src/client/launch"
+            launch: "./src/client/launch.tsx"
         },
         output: {
             path: path.resolve(__dirname, "public"),
@@ -29,8 +30,7 @@ module.exports = [
                     loader:  "ts-loader",
                     options: {
                         transpileOnly: true
-                    },
-                    exclude: /node_modules/
+                    }
                 }
             ]
         },
@@ -44,13 +44,11 @@ module.exports = [
     {
         name: "styles",
         mode: "production",
-        entry: {
-            styles: "./src/client/scss/styles.scss"
-        },
+        entry:  "./src/client/scss/styles.scss",
         output: {
             path: path.resolve(__dirname, "public"),
             publicPath: "/",
-            filename: "[name].min.js"
+            filename: "styles.min.js"
         },
         resolve: {
             extensions: [".js", ".scss"]
