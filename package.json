@@ -40,6 +40,7 @@
     "react-router-dom": "^4.2.2",
     "reflect-metadata": "^0.1.12",
     "ts-node": "^7.0.0",
+    "typescript": "^2.8.1",
     "xml-formatter": "^1.0.1"
   },
   "devDependencies": {
@@ -71,7 +72,6 @@
     "style-loader": "^0.21.0",
     "svg-inline-loader": "^0.8.0",
     "ts-loader": "^4.1.0",
-    "typescript": "^2.8.1",
     "webpack": "^4.4.1",
     "webpack-cli": "^3.1.0"
   }
