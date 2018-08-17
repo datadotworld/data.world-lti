@@ -6,8 +6,6 @@ const classroom = require('../assets/png/classroom-one.png');
 const classroomTwo = require('../assets/png/classroom-two.png');
 const classroomThree = require('../assets/png/classroom-three.png');
 
-const ltiConfigUrl = process.env.DDW_LTI_CONFIGURATION_URL || "http://example.com/config.xml";
-
 export class CreateClassroom extends React.Component<CreateClassroomProps, {}> {
 
     render() {
@@ -75,7 +73,7 @@ export class CreateClassroom extends React.Component<CreateClassroomProps, {}> {
                     </p>
 
                     <p className="card-text">
-                        We also have a new Canvas integration <a href={ltiConfigUrl}>link</a>!
+                        We also have a new Canvas integration <a href="#install-lti-card">link</a>!
                     </p>
 
                 </div>
