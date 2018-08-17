@@ -43,7 +43,7 @@ docker-compose up --build
 
 3. Create a new course in Canvas and the follow the installation instructions in the [FAQ](http://localhost:5000/faq#install-lti-card).
 
-** You might have to navigate out from the application installation area to the main course page for the side bar link to propagate. **
+**You might have to navigate out from the application installation area to the main course page for the side bar link to propagate.**
 
 
 ### Configuration Variables
