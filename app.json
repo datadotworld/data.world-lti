@@ -13,9 +13,6 @@
     },
     "DDW_LTI_LAUNCH_HOST": {
       "description": "The publicly accessible hostname for LTI content for use in testing."
-    },
-    "NPM_CONFIG_PRODUCTION": {
-      "default": "false"
     }
   }
 }
