@@ -50,6 +50,12 @@ export class InstallLTITutorial extends React.Component<InstallLTITutorialProps,
 
                 <img className="card-img rounded-0" src={appSettings}/>
 
+                <div id="config-link-generator" className="card-body">
+
+                    <h5 className="card-title">Configuration Link Generator</h5>
+
+                </div>
+
                 <ConfigurationBuilder/>
 
                 <img className="card-img rounded-0" src={addAppMenu}/>

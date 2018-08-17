@@ -54,6 +54,14 @@ docker-compose up --build
 * `DDW_LTI_SECURE` - Sets the protocol of dynamically produced URLs from https/http **default** true
 * `PORT` - **default** 3000
 
+### EduAppCenter Submission Materials
+
+[EduAppCenter](https://www.eduappcenter.com) allows for the submission of markdown for some of the user facing information.
+
+- [Description](docs/eduappcenter-description.md)
+- [Installation Instructions](docs/educappcenter-installation.md)
+- [Testing Instructions](docs/educappcenter-testing.md)
+
 ### Contributing
 
 This integration has been released as an open-source project. Community participation is encouraged and highly
