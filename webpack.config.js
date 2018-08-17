@@ -1,88 +1,89 @@
 const path = require("path");
-const webpack = require('webpack');
 
+module.exports = [
 
-module.exports = {
-
-    mode: "production",
-    plugins: [
-
-        new webpack.EnvironmentPlugin({
-
-            DDW_LTI_CONFIGURATION_HOST: 'example.com',
-            DDW_LTI_SECURE: 'true'
-
-        })
-
-    ],
-    entry: {
-        app: "./src/client/index",
-        launch: "./src/client/launch",
-        styles: "./src/client/scss/styles.scss"
-    },
-    output: {
-        path: path.resolve(__dirname, "public"),
-        publicPath: "/",
-        filename: "[name].min.js"
-    },
-    resolve: {
-        extensions: [".tsx", ".ts", ".jsx", ".js", ".json", ".scss"]
-    },
-    externals: {
-        dataworldWidgets: "dataworldWidgets"
-    },
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use:  "ts-loader",
-                exclude: /node_modules/
-            },
-            { test: /\.js$/, loader: "source-map-loader", enforce: "pre" },
-            {
-                test: /\.scss$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    },
-                    {
-                        loader: "css-loader"
-                    },
-                    {
-                        loader: "postcss-loader",
-                        options: {
-                            plugins: function () {
-                                return [
-                                    require('precss'),
-                                    require('autoprefixer')
-                                ]
-                            }
-                        }
-
-                    },
-                    {
-                        loader: "sass-loader"
+    {
+        name: "typescript",
+        mode: "production",
+        entry: {
+            app: "./src/client/index.tsx",
+            launch: "./src/client/launch"
+        },
+        output: {
+            path: path.resolve(__dirname, "public"),
+            publicPath: "/",
+            filename: "[name].min.js"
+        },
+        module: {
+            rules: [
+                {
+                    test:  /\.(svg|png)$/,
+                    loader: "file-loader",
+                    options: {
+                        name: "[ext]/[name].[ext]",
+                        outputPath: "assets/"
                     }
-                ]
-            },
-            {
-                test: /\.svg$/,
-                loader: "file-loader",
-                options: {
-                    name: "[name].[ext]",
-                    outputPath: "assets/svg/"
+                },
+                {
+                    test: /\.tsx$/,
+                    loader:  "ts-loader",
+                    options: {
+                        transpileOnly: true
+                    },
+                    exclude: /node_modules/
                 }
-            },
-            {
-                test: /\.png$/,
-                loader: "file-loader",
-                options: {
-                    name: "[name].[ext]",
-                    outputPath: "assets/png/"
+            ]
+        },
+        resolve: {
+            extensions: [".js", ".png", ".svg", ".tsx"]
+        },
+        externals: {
+            dataworldWidgets: "dataworldWidgets"
+        }
+    },
+    {
+        name: "styles",
+        mode: "production",
+        entry: {
+            styles: "./src/client/scss/styles.scss"
+        },
+        output: {
+            path: path.resolve(__dirname, "public"),
+            publicPath: "/",
+            filename: "[name].min.js"
+        },
+        resolve: {
+            extensions: [".js", ".scss"]
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.scss$/,
+                    use: [
+                        {
+                            loader: "style-loader"
+                        },
+                        {
+                            loader: "css-loader"
+                        },
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                plugins: function () {
+                                    return [
+                                        require('precss'),
+                                        require('autoprefixer')
+                                    ]
+                                }
+                            }
+
+                        },
+                        {
+                            loader: "sass-loader"
+                        }
+                    ]
                 }
-            }
-        ]
+            ]
+        }
     }
-
-
-};
+];
