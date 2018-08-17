@@ -14,7 +14,7 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
             <div className="row">
 
-                <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
                     <div className="card">
 
@@ -24,7 +24,7 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
                                 <li className="nav-item">
 
-                                    <a className="nav-link active" href="#create-classroom-card">
+                                    <a className="nav-link active" href="#create-classroom">
 
                                         How to set up a classroom on data.world
 
@@ -34,7 +34,7 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
                                 <li className="nav-item">
 
-                                    <a className="nav-link" href="#install-lti-card">
+                                    <a className="nav-link" href="#install-lti">
 
                                         Install LTI in LMS Course
 
@@ -51,9 +51,11 @@ export class FAQ extends React.Component<FAQProps, {}> {
 
                 </div>
 
-                <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
 
+                    <div id="create-classroom" className="my-1 faq-spacer"/>
                     <CreateClassroom/>
+                    <div id="install-lti" className="my-1 faq-spacer"/>
                     <InstallLTITutorial/>
 
                 </div>
